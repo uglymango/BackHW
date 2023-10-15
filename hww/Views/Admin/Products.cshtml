@@ -1,0 +1,55 @@
+﻿@model List<Product>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Products Table</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Products</h2>
+        <a class="btn btn-success">New Product</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int rowCount = 1;
+                }
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@rowCount</td>
+                        <td>@product.Name</td>
+                        <td>@product.Image</td>
+                        <td>@product.Description</td>
+                        <td>@product.Color</td>
+                        <td>$@product.Price</td>
+                        <td>@product.Size</td>
+                        <td>
+                            <a href="~/admin/productedit?id=@product.Id" class="btn btn-warning">Edit</a>
+                            <a href="~/admin/DeleteProduct?id=@product.Id" class="btn btn-danger">Remove</a>
+                        </td>
+                    </tr>
+
+                    rowCount++;
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
